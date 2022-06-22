@@ -1,4 +1,4 @@
-package com.xlg.crescent.db;
+package io.github.qingguox;
 
 import java.util.List;
 
@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.xlg.crescent.db.SimpleSingleFieldIterableTest.UserInfo;
+
+import io.github.qingguox.SimpleSingleFieldIterableTest.UserInfo;
+import io.github.qingguox.db.ShardOperationUtils;
 
 /**
  * @author wangqingwei
