@@ -1,4 +1,4 @@
-package io.github.qingguox;
+package io.github.qingguox.db;
 
 import java.util.List;
 
@@ -8,8 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
-import io.github.qingguox.SimpleSingleFieldIterableTest.UserInfo;
-import io.github.qingguox.db.ShardOperationUtils;
+import io.github.qingguox.db.SimpleSingleFieldIterableTest.UserInfo;
 
 /**
  * @author wangqingwei

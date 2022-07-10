@@ -36,7 +36,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <revision>1.0.41-SNAPSHOT</revision>
+        <revision>1.0.42-RELEASE</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -48,6 +48,7 @@
         <common.collection4>4.0</common.collection4>
         <common.guava>30.1.1-jre</common.guava>
         <common.lang3>3.12.0</common.lang3>
+        <joda.time>2.10.14</joda.time>
     </properties>
 
     <!-- 开发人员说明 -->

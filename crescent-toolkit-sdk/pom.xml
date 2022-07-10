@@ -62,5 +62,13 @@
             <artifactId>guava</artifactId>
             <version>${common.guava}</version>
         </dependency>
+
+        <!--jodatime日期-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time}</version>
+        </dependency>
+
     </dependencies>
 </project>
