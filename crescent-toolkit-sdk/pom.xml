@@ -7,7 +7,7 @@
     <parent>
         <artifactId>Crescent-Toolkit</artifactId>
         <groupId>io.github.qingguox</groupId>
-        <version>1.0.48-RELEASE</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>crescent-toolkit-sdk</artifactId>
@@ -63,6 +63,39 @@
             <version>${common.guava}</version>
         </dependency>
 
+        <!--junit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!-- druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--guava-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${common.guava}</version>
+        </dependency>
+
         <!--jodatime日期-->
         <dependency>
             <groupId>joda-time</groupId>
@@ -77,14 +110,9 @@
             <version>${rocket.spring-boot}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 </project>
