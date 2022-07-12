@@ -16,7 +16,7 @@
 
     <groupId>io.github.qingguox</groupId>
     <artifactId>Crescent-Toolkit</artifactId>
-    <version>${revision}</version>
+    <version>1.0.48-RELEASE</version>
     <packaging>pom</packaging>
 
     <name>Crescent-Toolkit</name>
@@ -36,7 +36,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <revision>1.0.42-RELEASE</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -49,6 +48,7 @@
         <common.guava>30.1.1-jre</common.guava>
         <common.lang3>3.12.0</common.lang3>
         <joda.time>2.10.14</joda.time>
+        <rocket.spring-boot>2.0.3</rocket.spring-boot>
     </properties>
 
     <!-- 开发人员说明 -->
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>io.github.qingguox</groupId>
                 <artifactId>crescent-toolkit-sdk</artifactId>
-                <version>${revision}</version>
+                <version>${project.version}</version>
             </dependency>
 
         </dependencies>
@@ -157,18 +157,6 @@
                             <verbose>true</verbose>
                             <encoding>UTF-8</encoding>
                             <showWarnings>false</showWarnings>
-                        </configuration>
-                    </plugin>
-                    <!--如果不会sna包, 直接到中央存储库pom-->
-                   <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>sonatype-nexus-snapshots</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
                     <!--Release -->

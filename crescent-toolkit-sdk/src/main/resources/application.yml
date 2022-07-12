@@ -1,0 +1,33 @@
+server:
+    port: 8081   # web\u5E94\u7528\u670D\u52A1\u7AEF\u53E3
+
+
+
+spring:
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+
+    #热加载生效
+    devtools:
+        restart:
+            enabled: true
+            #额外新增的热加载目录
+            additional-paths: src/main/java
+    #热加载排除目录
+    #spring.devtools.restart.exclude=
+
+    # 默认是以  开发环境
+#    profiles:
+#        active: dev
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/xlgTask?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+
+rocketmq:
+    name-server: localhost:9876 # 自己的RocketMQ服务地址
+    producer:
+        send-message-timeout: 300000
+        group: launch-group

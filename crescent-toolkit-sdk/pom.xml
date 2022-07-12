@@ -7,7 +7,7 @@
     <parent>
         <artifactId>Crescent-Toolkit</artifactId>
         <groupId>io.github.qingguox</groupId>
-        <version>${revision}</version>
+        <version>1.0.48-RELEASE</version>
     </parent>
 
     <artifactId>crescent-toolkit-sdk</artifactId>
@@ -70,5 +70,21 @@
             <version>${joda.time}</version>
         </dependency>
 
+        <!--rocketMq-springboot-->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>${rocket.spring-boot}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 </project>
