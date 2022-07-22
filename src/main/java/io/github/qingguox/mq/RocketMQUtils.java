@@ -63,4 +63,14 @@ public class RocketMQUtils {
         //            message.setDelayTimeLevel(2);                           // 5s
         return rocketMQTemplate.syncSend(topic, msg, timeOutMills); // 3秒超时
     }
+
+    public SendResult sendDelaySyncMsg(Message<? extends BaseMessage> msg, String topic, long timeOutMills, long delayMills) {
+        BaseMessage payload = msg.getPayload();
+        long targetTimeStamp = payload.getTimeStamp();
+        long curTimeStamp = System.currentTimeMillis();
+        if (targetTimeStamp <= curTimeStamp) {
+            // 立即发送
+        }
+        return rocketMQTemplate.syncSend(topic, msg, timeOutMills, 0);
+    }
 }

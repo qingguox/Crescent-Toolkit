@@ -32,7 +32,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <revision>1.0.611-RELEASE</revision>
+        <revision>1.0.62-RELEASE</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -46,6 +46,7 @@
         <common.lang3>3.12.0</common.lang3>
         <joda.time>2.10.14</joda.time>
         <rocket.spring-boot>2.0.3</rocket.spring-boot>
+        <phantomthief-more-lambdas>0.1.54</phantomthief-more-lambdas>
     </properties>
 
     <!-- 开发人员说明 -->
@@ -161,6 +162,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.phantomthief/more-lambdas -->
+        <dependency>
+            <groupId>com.github.phantomthief</groupId>
+            <artifactId>more-lambdas</artifactId>
+            <version>${phantomthief-more-lambdas}</version>
         </dependency>
     </dependencies>
 

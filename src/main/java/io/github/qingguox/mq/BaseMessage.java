@@ -8,7 +8,7 @@ package io.github.qingguox.mq;
 public interface BaseMessage {
 
     /**
-     * Message Send TimeStamp(ms)
+     * Message Target TimeStamp(ms)
      */
     default long getTimeStamp() {
         return System.currentTimeMillis();
