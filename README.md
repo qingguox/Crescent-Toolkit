@@ -1,8 +1,42 @@
 # Crescent-Toolkit
-新月武器库
+新月武器库 ----- <font  color="blue">提供一些 Java 开发工具</font>
 
-## 提供功能
-<a color="red">相关测试代码在 src/test/io.github.qingguox下</a>
+
+# 版本说明: 
+|更新日期|版本号|功能说明|
+|:---|:---:|---:|
+|.......|......|升级中...|
+|2022-08-11|1.0.63-RELEASE|<a href="https://github.com/qingguox/Crescent-Toolkit#基础功能">基础功能</a>|
+
+# 接入 Maven
+
+1. 首先在maven的配置文件中setting.xml中加上镜像
+
+```
+<mirror>
+        <id>repo1</id>
+        <name>Mirror from Maven Repo2</name>
+        <url>https://repo1.maven.org/maven2/</url>
+        <mirrorOf>central</mirrorOf>
+</mirror>
+```
+
+2. 查看版本:
+
+仓库: https://mvnrepository.com/artifact/io.github.qingguox/Crescent-Toolkit
+最准确: https://repo1.maven.org/maven2/io/github/qingguox/Crescent-Toolkit/
+
+```
+<dependency>
+    <groupId>io.github.qingguox</groupId>
+    <artifactId>Crescent-Toolkit</artifactId>
+    <version>1.0.63-RELEASE</version>
+</dependency>
+```
+
+
+# 基础功能
+<a href="https://github.com/qingguox/Crescent-Toolkit/tree/main/src/test/java/io/github/qingguox"><font color="red">相关测试代码在</font> src/test/io.github.qingguox下</a>
 
 ## 一、获取数据工具(db)
 1. 单表获取某个id后多少条数据
