@@ -38,7 +38,7 @@ public class AdvanceTestApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        testUser();
-        testGroup();
+//        testGroup();
     }
 
     private void testGroup() {

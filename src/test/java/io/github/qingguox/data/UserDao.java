@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author wangqingwei <wangqingwei@kuaishou.com>
+ * @author wangqingwei
  * Created on 2022-08-06
  */
 @Repository
