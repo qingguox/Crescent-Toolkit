@@ -1,10 +1,14 @@
 package io.github.qingguox.id.sequence;
 
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.util.Assert;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
@@ -23,7 +28,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 @SpringBootApplication(scanBasePackages = "io.github")
 public class IdSequenceTest implements CommandLineRunner {
     LinkedBlockingQueue queue = new LinkedBlockingQueue();
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 15,
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(100, 100,
             300, TimeUnit.SECONDS, queue, new ThreadFactoryBuilder() //
             .setNameFormat("data-load-executor-holder-%d") //
             .build());
@@ -33,23 +38,41 @@ public class IdSequenceTest implements CommandLineRunner {
     @Autowired
     private IdSequenceService idSequenceService;
 
-    public void testGenId() throws InterruptedException {
-        int count = 1000;
+    public void testGenId(String idBizType) throws InterruptedException {
+        long startTimeMills = System.currentTimeMillis();
+        int count = 10000;
+        final Thread thread = Thread.currentThread();
         Set<Long> idSet = Sets.newConcurrentHashSet();
+        List<Future<?>> futureList = Lists.newArrayList();
         for (int cur = 1; cur <= count; cur++) {
-            executor.submit(() -> {
-                final long id = idSequenceService.getId("testGenIdSingleSection");
+            final Future<?> submit = executor.submit(() -> {
+                final long id = idSequenceService.getId(idBizType);
                 idSet.add(id);
                 logger.info("gen id : {}", id);
             });
+            futureList.add(submit);
         }
-        Thread.sleep(10000);
+        if (CollectionUtils.isNotEmpty(futureList)) {
+            futureList.stream().map(cur -> {
+                try {
+                    final Object oo = cur.get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return 1;
+            }).collect(Collectors.toList());
+            logger.info("main cost : {}", System.currentTimeMillis() - startTimeMills);
+        }
+        thread.join();
         Assert.isTrue(count == idSet.size(), "count != idSet.size");
     }
 
     @Override
     public void run(String... args) throws Exception {
-        testGenId();
+        // 测试客户端批量单号段
+//        testGenId("testGenIdSingleSection");
+        // 测试客户端批量单号段
+        testGenId("testGenIdTwoSection");
     }
 
     public static void main(String[] args) {

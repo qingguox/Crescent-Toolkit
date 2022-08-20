@@ -60,6 +60,12 @@ public class AdvancedBeanPropertySqlParameterSource extends BeanPropertySqlParam
         return value;
     }
 
+    /**
+     * 手动添加
+     * @param paramName 参数名
+     * @param value 参数值
+     * @return source
+     */
     public AdvancedBeanPropertySqlParameterSource addValue(String paramName, @Nullable Object value) {
         mapSqlParameterSource().addValue(paramName, value);
         return this;
@@ -67,6 +73,7 @@ public class AdvancedBeanPropertySqlParameterSource extends BeanPropertySqlParam
 
     /**
      * lazy load
+     * @return source
      */
     public MapSqlParameterSource mapSqlParameterSource() {
         if (mapSqlParameterSource == null) {

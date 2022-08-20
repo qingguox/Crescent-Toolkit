@@ -18,8 +18,8 @@ public class DateConvertUtils {
 
     /**
      * 根据时间戳ms获取yyyyMMdd格式的日期
-     * @param timeStamp
-     * @return
+     * @param timeStamp 时间戳
+     * @return 日期
      */
     public static long getDateByTimeStamp(long timeStamp) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(YYYYMMDD_DATE_FORMATE);
@@ -28,8 +28,8 @@ public class DateConvertUtils {
 
     /**
      * 默认的转换
-     * @param timeStamp
-     * @return
+     * @param timeStamp 时间戳
+     * @return 日期
      */
     public static String getDefaultDateByTimeStamp(long timeStamp) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(YYYYMMDD_HHMMSS_DATA_FORMATE);
@@ -38,9 +38,9 @@ public class DateConvertUtils {
 
     /**
      * 根据时间戳和指定pattern来转换日期
-     * @param timeStamp
-     * @param pattern
-     * @return
+     * @param timeStamp 时间戳
+     * @param pattern 方式
+     * @return 日期
      */
     public static String getDateByTimeStampAndPattern(long timeStamp, String pattern) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
@@ -49,8 +49,8 @@ public class DateConvertUtils {
 
     /**
      * 计算时间戳对应当天的开始时间
-     * @param timeStamp
-     * @return
+     * @param timeStamp 时间戳
+     * @return 开始时间
      */
     public static long getDayStartTime(long timeStamp) {
         return new DateTime(timeStamp).withTimeAtStartOfDay().getMillis();
@@ -58,9 +58,9 @@ public class DateConvertUtils {
 
     /**
      * 比较两个时间戳相差天数
-     * @param firstTimeStamp
-     * @param secondTimeStamp
-     * @return
+     * @param firstTimeStamp 第一个时间戳
+     * @param secondTimeStamp 第二个时间戳
+     * @return 相差天数
      */
     public static long diffDaysBetweenTwoTimeStamp(long firstTimeStamp, long secondTimeStamp) {
         DateTime firstTime = new DateTime(firstTimeStamp).withTimeAtStartOfDay();

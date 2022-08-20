@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import io.github.qingguox.id.sequence.IdRule;
-import io.github.qingguox.id.sequence.IdSequenceClientService;
+import io.github.qingguox.id.sequence.IdSequenceClient;
 import io.github.qingguox.id.sequence.IdSequenceService;
 import io.github.qingguox.id.sequence.dao.IdBizDAO;
 import io.github.qingguox.id.sequence.model.IdBiz;
@@ -30,7 +30,7 @@ public class IdSequenceServiceImpl implements IdSequenceService {
     public long getId(String idBizType) {
         final IdBiz idBiz = idBizDAO.geByBizType(idBizType);
         Assert.notNull(idBiz, "idBiz is null! idBizType : " + idBizType);
-        IdSequenceClientService idSequenceClientByRule =
+        IdSequenceClient idSequenceClientByRule =
                 idSequenceServiceFactory.getIdSequenceClientByRule(IdRule.fromValue(idBiz.getRule()));
         return idSequenceClientByRule.getId(idBiz.getId());
     }

@@ -212,15 +212,31 @@ public class JacksonUtils {
     /**
      * 转换obj为指定类型.
      * 前提是: 需要判断obj是否是type
+     * @param obj 对象
+     * @param type 类型
+     * @param <T>
+     * @return 类型
      */
     public static <T> T value(Object obj, Class<T> type) {
         return MAPPER.convertValue(obj, type);
     }
 
+    /**
+     * @param obj 对象
+     * @param type 类型
+     * @param <T>
+     * @return 类型
+     */
     public static <T> T value(Object obj, JavaType type) {
         return MAPPER.convertValue(obj, type);
     }
 
+    /**
+     * @param obj 对象
+     * @param type 类型
+     * @param <T>
+     * @return 类型
+     */
     public static <T> T value(Object obj, TypeReference<T> type) {
         return MAPPER.convertValue(obj, type);
     }

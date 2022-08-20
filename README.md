@@ -6,6 +6,7 @@
 |更新日期|版本号|功能说明|
 |:---|:---:|---:|
 |.......|......|升级中...|
+|2022-08-20|1.0.64-RELEASE|<a href="https://github.com/qingguox/Crescent-Toolkit##九、Id-generator">添加id客户端单双号段生成器</a>|
 |2022-08-11|1.0.63-RELEASE|<a href="https://github.com/qingguox/Crescent-Toolkit#基础功能">基础功能</a>|
 
 # 接入 Maven
@@ -30,7 +31,7 @@
 <dependency>
     <groupId>io.github.qingguox</groupId>
     <artifactId>Crescent-Toolkit</artifactId>
-    <version>1.0.63-RELEASE</version>
+    <version>1.0.64-RELEASE</version>
 </dependency>
 ```
 
@@ -65,3 +66,40 @@
 
 ## 八、数据操作层.
 1. 提供json -> 对象, 对象->json , 支持第七点的枚举类型.
+
+## 九、Id-generator 
+0.相关文档
+https://www.yuque.com/docs/share/0183caa8-d29c-4b48-97f5-6a5cd05933a2?# 《各种ID生成器》
+
+```
+线程池配置: 
+   ThreadPoolExecutor executor = new ThreadPoolExecutor(100, 100,
+            300, TimeUnit.SECONDS, queue, new ThreadFactoryBuilder() //
+            .setNameFormat("data-load-executor-holder-%d") //
+            .build());
+```
+
+sql 配置: 在resource 文件夹下的 IdSequence.sql中. 
+![image](https://user-images.githubusercontent.com/48853704/185727155-30a3f794-1c3e-4f0b-90dd-d098698d3a7e.png)
+
+
+1.提供客户端批量单号段生成器.
+- case: io.github.qingguox.id.sequence.IdSequenceTest#testGenId("testGenIdSingleSection");
+- 性能:  单进程, 多线程. 10000条数据, 耗时 26903ms
+![截屏2022-08-20 11 09 02](https://user-images.githubusercontent.com/48853704/185726947-f90031fd-e6b7-4258-8e97-fecc020f8a26.png)
+
+2.提供客户端批量双号段生成器.
+- case :  io.github.qingguox.id.sequence.IdSequenceTest#testGenId("testGenIdTwoSection");
+- 性能: 10000 条数据, 耗时 27629ms
+![image](https://user-images.githubusercontent.com/48853704/185726983-424ac0f4-ee96-48c7-a37d-4389c50779d8.png)
+
+3.大家可能感觉加了双号段反而耗时还增加了？
+> 其实是这样的, 双号段缓存主要是防止在某一时刻db压力剧增, 把db的瞬时访问量分散. 
+> 目前是单进程测试的, 如果是多进程测试, 你们想想会出现什么问题? 
+
+
+4.TODO 期望 后面我提供一个可视化的Id申请页面, 供大家使用. 谢谢
+
+
+
+

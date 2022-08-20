@@ -23,6 +23,14 @@ public class ShardOperationUtils {
      * 对一个集合的数据 (集合中数据类型为M) 进行分组 (分组Key为K, 分组方法为shardKeyFunction)
      * 分组后每组按照batchSize数量, 使用operationFunction进行处理, 最终返回结果(类型为R)
      * K必须是可以map的key
+     * @param models
+     * @param batchSize
+     * @param shardKeyFunction
+     * @param operationFunction
+     * @param <K>
+     * @param <M>
+     * @param <R>
+     * @return
      */
     public static <K, M, R> List<R> shardOperation(Collection<M> models, int batchSize, Function<M, K> shardKeyFunction,
             BiFunction<K, List<M>, List<R>> operationFunction) {

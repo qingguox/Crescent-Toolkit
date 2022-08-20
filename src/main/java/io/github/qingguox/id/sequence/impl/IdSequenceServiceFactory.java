@@ -16,7 +16,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
 
 import io.github.qingguox.id.sequence.IdRule;
-import io.github.qingguox.id.sequence.IdSequenceClientService;
+import io.github.qingguox.id.sequence.IdSequenceClient;
 
 /**
  * @author wangqingwei
@@ -26,10 +26,10 @@ import io.github.qingguox.id.sequence.IdSequenceClientService;
 public class IdSequenceServiceFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(IdSequenceServiceFactory.class);
-    private final Map<IdRule, IdSequenceClientService> map = Maps.newConcurrentMap();
+    private final Map<IdRule, IdSequenceClient> map = Maps.newConcurrentMap();
 
     @Autowired
-    private IdSequenceServiceFactory(List<IdSequenceClientService> clientServiceList) throws Exception {
+    private IdSequenceServiceFactory(List<IdSequenceClient> clientServiceList) throws Exception {
         // 1. 检查是否为null
         clientServiceList = checkHasNull(clientServiceList);
         // 2. check是否有重复
@@ -39,24 +39,24 @@ public class IdSequenceServiceFactory {
     }
 
     @Nonnull
-    public IdSequenceClientService getIdSequenceClientByRule(IdRule idRule) {
+    public IdSequenceClient getIdSequenceClientByRule(IdRule idRule) {
         return map.get(idRule);
     }
 
-    private void putAll(List<IdSequenceClientService> clientServiceList) {
-        for (IdSequenceClientService client : clientServiceList) {
+    private void putAll(List<IdSequenceClient> clientServiceList) {
+        for (IdSequenceClient client : clientServiceList) {
             logger.info("[IdSequenceServiceFactory] rule={}, FQCN={}", client.supportRule(), client.getClass().getCanonicalName());
             map.put(client.supportRule(), client);
         }
     }
 
-    private void checkDuplicate(List<IdSequenceClientService> clientServiceList) throws Exception {
+    private void checkDuplicate(List<IdSequenceClient> clientServiceList) throws Exception {
         if (CollectionUtils.isEmpty(clientServiceList)) {
             return;
         }
 
         ArrayListMultimap<IdRule, String> duplicateMap = ArrayListMultimap.create();
-        clientServiceList.stream().collect(Collectors.groupingBy(IdSequenceClientService::supportRule))
+        clientServiceList.stream().collect(Collectors.groupingBy(IdSequenceClient::supportRule))
                 .forEach((key, clients) -> {
                     if (clients.size() > 1) {
                         clients.forEach(client -> duplicateMap.put(client.supportRule(), client.getClass().getCanonicalName()));
@@ -69,7 +69,7 @@ public class IdSequenceServiceFactory {
         }
     }
 
-    private List<IdSequenceClientService> checkHasNull(List<IdSequenceClientService> clientServiceList) {
+    private List<IdSequenceClient> checkHasNull(List<IdSequenceClient> clientServiceList) {
         logger.info("[IdSequenceServiceFactory] clientService size = {}", clientServiceList.size());
         return clientServiceList.stream().filter(client -> {
             boolean isNull = client.supportRule() == null;

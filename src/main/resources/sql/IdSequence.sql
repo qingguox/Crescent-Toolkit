@@ -1,5 +1,5 @@
-
-
+DROP DATABASE IF EXISTS `test`;
+CREATE DATABASE `test`;
 USE test;
 
 DROP TABLE IF EXISTS `id_biz`;
@@ -31,3 +31,4 @@ CREATE TABLE `id_gen`
 ) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COMMENT = '业务id表';
 
 INSERT INTO test.id_gen (id, max_id, step, version, biz_id) VALUES (1, 1, 10, 1, 1);
+INSERT INTO test.id_gen (id, max_id, step, version, biz_id) VALUES (2, 1, 10, 1, 2);
