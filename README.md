@@ -62,7 +62,7 @@
 
 
 ## 七、枚举形态接口(enums)
-1. getValue, etDesc
+1. getValue, getDesc
 
 ## 八、数据操作层.
 1. 提供json -> 对象, 对象->json , 支持第七点的枚举类型.
